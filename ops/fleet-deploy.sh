@@ -54,7 +54,7 @@ then
 elif [ "$ACTION" = "etcdctl_set" ]
 then
   fleetctl --tunnel=$FLEET_IP ssh $FLEET_HOST_ID etcdctl set /vulcand/frontends/pipeline-example/frontend \
-    \'{\"Id\":\"pipeline-example\",\"Route\":\"Host\(\\"pipeline-example.vungle.com\\"\)\",\"Type\":\"http\",\"BackendId\":\"pipeline-example\",\"Settings\":{\"Limits\":{\"MaxMemBodyBytes\":0,\"MaxBodyBytes\":0},\"FailoverPredicate\":\"\",\"Hostname\":\"\",\"TrustForwardHeader\":false}}\'
+    \'{\"Id\":\"pipeline-example\",\"Route\":\"Host\(\\\"pipeline-example.vungle.com\\\"\)\",\"Type\":\"http\",\"BackendId\":\"pipeline-example\",\"Settings\":{\"Limits\":{\"MaxMemBodyBytes\":0,\"MaxBodyBytes\":0},\"FailoverPredicate\":\"\",\"Hostname\":\"\",\"TrustForwardHeader\":false}}\'
   fleetctl --tunnel=$FLEET_IP ssh $FLEET_HOST_ID etcdctl set /vulcand/backends/pipeline-example/backend \
     \'{\"Id\":\"pipeline-example\",\"Type\":\"http\",\"Settings\":{\"Timeouts\":{\"Read\":\"0\",\"Dial\":\"0\",\"TLSHandshake\":\"0\"},\"KeepAlive\":{\"Period\":\"0\",\"MaxIdleConnsPerHost\":0},\"TLS\":{\"PreferServerCipherSuites\":false,\"InsecureSkipVerify\":false,\"MinVersion\":\"\",\"MaxVersion\":\"\",\"SessionTicketsDisabled\":false,\"SessionCache\":{\"Type\":\"\",\"Settings\":null},\"CipherSuites\":[]}}}\'
   exit 0
