@@ -46,7 +46,7 @@ startcontainers ()
 
 runtests ()
 {
-  docker exec ${PX}_pipeline-example /bin/sh -c "cd /opt/pipeline-example;npm test" || SUCCESS=false
+  docker exec ${PX}_pipeline-example /bin/sh -c "cd /opt/pipeline-example;npm test" > test-reports.xml
 }
 
 tag ()
