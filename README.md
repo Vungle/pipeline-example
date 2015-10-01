@@ -4,7 +4,7 @@
 ## Local Setup
 ### startup boot2docker
 `$ boot2docker start`
-### set docker environment variables
+### set boot2docker environment variables
 `$ boot2docker shellinit`
 ### get ip address of boot2docker
 ```
@@ -29,6 +29,7 @@ $ docker port PX_pipeline-example
 `$ ops/si-scripts.sh cleanup`
 
 ## jenkins job runs the following
+`http://jenkins.vungle.com:8080/view/system-integration/view/si-pipeline-example/job/si-pipeline-example-master/`
 ### builds image
 `ops/si-script.sh build`
 ### tests image (startscontainers|runtests|cleanup)
