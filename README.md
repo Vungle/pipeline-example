@@ -28,11 +28,36 @@ $ docker port PX_pipeline-example
 ### cleanup
 `$ ops/si-scripts.sh cleanup`
 
-## jenkins job runs the following
-`http://jenkins.vungle.com:8080/view/system-integration/view/si-pipeline-example/job/si-pipeline-example-master/`
-### builds image
-`ops/si-script.sh build`
-### tests image (startscontainers|runtests|cleanup)
-`ops/si-script.sh test`
-### tags and pushes image to docker hub
-`ops/si-script.sh tag`
+## pull request jenkins job runs the following
+http://jenkins.vungle.com:8080/view/system-integration/view/si-pipeline-example/job/si-pipeline-example-master/
+```
+ops/si-script.sh build
+ops/si-script.sh test
+ops/si-script.sh tag
+```
+
+## deploy jenkins job runs the following
+http://jenkins.vungle.com:8080/view/system-integration/view/si-pipeline-example/job/deploy-pipeline-example/
+```
+# gets vulcan values from etcd
+export ACTION=etcdctl_get
+ops/fleet-deploy.sh
+# sets vulcan values to etcd
+export ACTION=etcdctl_set
+ops/fleet-deploy.sh
+# stops and destroys current unit file and submits and starts new unit file
+export ACTION=deploy
+ops/fleet-deploy.sh
+# restarts current unit file
+export ACTION=restart
+ops/fleet-deploy.sh
+# stops current unit file 
+export ACTION=stop
+ops/fleet-deploy.sh
+# start current unit file 
+export ACTION=start
+ops/fleet-deploy.sh
+# displays status of unit file
+export ACTION=status
+ops/fleet-deploy.sh
+```
