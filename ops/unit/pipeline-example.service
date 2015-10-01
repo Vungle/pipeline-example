@@ -17,13 +17,13 @@ ExecStart=/usr/bin/bash -xc \
          vungle/pipeline-example:master \
            /bin/sh -c \
              "cd /opt/pipeline-example;\
-              npm test \
+              node app/server.js \
              " \
   '
 
 ExecStartPost=/usr/bin/bash -xc \
   '/usr/bin/sleep 5; \
-   /usr/bin/etcdctl set /vulcand/backends/pipeline-example/servers/srv00 "{\\"Id\\":\\"pipeline-example\\",\\"URL\\":\\"http://$$(docker inspect --format "{{ .NetworkSettings.IPAddress }}" pipeline-example):9000\\"}" \
+   /usr/bin/etcdctl set /vulcand/backends/pipeline-example/servers/srv00 "{\\"Id\\":\\"pipeline-example\\",\\"URL\\":\\"http://$$(docker inspect --format "{{ .NetworkSettings.IPAddress }}" pipeline-example):3000\\"}" \
   '
 
 ExecStop=/usr/bin/docker kill pipeline-example
