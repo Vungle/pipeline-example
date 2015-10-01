@@ -26,7 +26,7 @@ $ docker port PX_pipeline-example
 `http://192.168.59.103:32770/rgbToHex?red=255&green=255&blue=255`
 
 ### cleanup
-`ops/si-scripts.sh cleanup`
+`$ ops/si-scripts.sh cleanup`
 
 ## jenkins job runs the following
 ### builds image
