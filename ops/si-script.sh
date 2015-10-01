@@ -40,7 +40,8 @@ cleanup ()
 startcontainers ()
 {
   cleanup
-  docker run --name=${PX}_pipeline-example -d $DOCKERHUB_PATH:$DOCKERHUB_TAG /bin/sh -c "cd /opt/pipeline-example;node app/server.js" || SUCCESS=false
+  docker run --name=${PX}_pipeline-example -d -p 3000 $DOCKERHUB_PATH:$DOCKERHUB_TAG /bin/sh -c "cd /opt/pipeline-example;node app/server.js" || SUCCESS=false
+  docker port ${PX}_pipeline-example
 }
 
 runtests ()
